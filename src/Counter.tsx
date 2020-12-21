@@ -16,11 +16,17 @@ const Counter: React.FC<{}> = () => {
   };
 
   // const multiplication = () => {
-  //   setValue(value * 2);
+  //   if (value % 3 === 0) {
+  //     setValue((prevSrate) => prevSrate * 3);
+  //   } else if (value % 2 === 0) {
+  //     setValue((prevSrate) => prevSrate * 5);
+  //   } else {
+  //     setValue((prevSrate) => prevSrate * 2);
+  //   }
   // };
 
   // const division = () => {
-  //   setValue(value / 2);
+  //   setValue((prevSrate) => prevSrate / 2);
   // };
 
   return (

@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // setValueの中身
 type MySetStateAction = number | ((prevState: number) => number);
 type MyDispatch = (value: MySetStateAction) => void;
 
 const Counter: React.FC<{}> = () => {
-  const [value, setValue] = useState<number>(0);
+  const initialvalue: any = 0;
+  const [value, setValue] = useState<number>(initialvalue);
 
   const incriment = () => {
     setValue((prevSrate) => prevSrate + 1);
@@ -15,6 +16,20 @@ const Counter: React.FC<{}> = () => {
     setValue((prevSrate) => prevSrate - 1);
   };
 
+  const renderTimes = useRef<number>(0);
+  useEffect(() => {
+    renderTimes.current = renderTimes.current + 1;
+  });
+
+  const ref = useRef<HTMLInputElement>(null!);
+  const focusInput = () => {
+    ref.current.focus();
+
+    // ref.current?.focus();
+
+    // const current = ref.current;
+    // if (current !== null) current.focus();
+  };
   // const multiplication = () => {
   //   if (value % 3 === 0) {
   //     setValue((prevSrate) => prevSrate * 3);
@@ -36,6 +51,9 @@ const Counter: React.FC<{}> = () => {
       <button onClick={decrement}>-1</button>
       {/* <button onClick={multiplication}>x</button>
       <button onClick={division}>÷</button> */}
+      <div>This component was re-rendered {renderTimes.current} times! </div>
+      <input ref={ref} type="text" />
+      <button onClick={focusInput}>Click Me!</button>
     </div>
   );
 };
